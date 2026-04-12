@@ -51,7 +51,7 @@ const About = ({currentLang}) => {
             <div className={`"flex flex-col md:flex-row gap-8 ${(currentLang["lang"]=="en")?"":"persian-flex"}`}>
                 <h2 className="text-3xl font-bold mb-4">{currentLang["AboutMe"]}</h2>
                 <Image
-                src="/Images/profile.jpg"
+                src="/Images/summary.png"
                 alt="Profile"
                 width={128}
                 height={128}

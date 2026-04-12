@@ -12,8 +12,7 @@ const projects = [
         description: "میسازم Unity بازی که درحال حاضر با"
     },
     video: "/Videos/game.webm",
-    source: "https://github.com/yourusername/project2",
-    demo: "#",
+    source: "https://hamgit.ir/amir1385amol/gs-stuff.git"
   },
   {
     "en":{
@@ -25,8 +24,8 @@ const projects = [
         description: "ساخته شده Next.js و Tailwind سایت رزومه شخصیم که با ",
     },
     image: "/globe.svg",
-    source: "https://github.com/yourusername/project1",
-    demo: "https://yourdemo.com",
+    source: "https://hamgit.ir/amir1385amol/portfolio.git",
+    demo: "/"
   },
 ];
 
@@ -68,13 +67,13 @@ const Projects = ({currentLang}) => {
                 >
                   {currentLang["SourceCode"]}
                 </a>
-                <a
+                {(project.demo)?<a
                   href={project.demo}
                   target="_blank"
                   className="text-green-600 hover:underline"
                 >
                   {currentLang["LiveDemo"]}
-                </a>
+                </a>:<></>}
               </div>
             </div>
           </div>

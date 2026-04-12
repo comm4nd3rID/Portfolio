@@ -1,0 +1,67 @@
+@import "tailwindcss";
+@font-face {
+  font-family: "p-font";
+  src: url(../public/Fonts/Advertising\ Bold_MRT.ttf);
+}
+:root {
+  --background: #dedede;
+  --foreground: #171717;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --persian-font-family: "p-font"
+  font-family: var(--font-family);
+}
+
+.hero-bg{
+  background: linear-gradient(white, var(--background));
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+  .hero-bg{
+      background: linear-gradient(rgb(49, 49, 49), var(--background));
+  }
+}
+
+.my-work-btn{
+  background-color: var(--foreground);
+  color: var(--background);
+}
+.my-work-btn:hover{
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.skill-card{
+  background-color: var(--foreground);
+  color: var(--background);
+  text-align: center;
+}
+.skill-card:hover{
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.project-image{
+  justify-self: center;
+}
+
+.li-text{
+  font-size: small;
+}
+
+.persian-flex{
+  justify-items: end;
+  text-align: end;
+}

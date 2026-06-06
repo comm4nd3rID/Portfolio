@@ -1,67 +1,152 @@
+/* app/globals.css */
 @import "tailwindcss";
 @font-face {
   font-family: "p-font";
-  src: url(../public/Fonts/Advertising\ Bold_MRT.ttf);
+  src: url(../public/Fonts/BNazanin.ttf);
 }
 :root {
-  --background: #dedede;
-  --foreground: #171717;
+  --warm-ivory: #F5F0E8;
+  --stone: #D4CEC4;
+  --charcoal: #2C2825;
+  --cedar: #6B4E3D;
+  --sage: #8A9A86;
+  --paper: #FDFBF7;
+  --shadow-soft: rgba(44, 40, 37, 0.06);
+  --en:'Inter', -apple-system, sans-serif;
+  --fa:"Vazirmatn, 'Inter', sans-serif";
+  --en-font: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  --fa-font: "p-font";
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  --persian-font-family: "p-font"
-  font-family: var(--font-family);
+  background: var(--warm-ivory);
+  color: var(--charcoal);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
 }
 
-.hero-bg{
-  background: linear-gradient(white, var(--background));
+h1, h2, h3, h4, .display-serif {
+  font-family: Georgia, 'Times New Roman', '游明朝', YuMincho, serif;
+  font-weight: 400;
+  letter-spacing: -0.01em;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--stone);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cedar);
+  border-radius: 3px;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
-  .hero-bg{
-      background: linear-gradient(rgb(49, 49, 49), var(--background));
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
-.my-work-btn{
-  background-color: var(--foreground);
-  color: var(--background);
-}
-.my-work-btn:hover{
-  background-color: var(--background);
-  color: var(--foreground);
-}
-
-.skill-card{
-  background-color: var(--foreground);
-  color: var(--background);
-  text-align: center;
-}
-.skill-card:hover{
-  background-color: var(--background);
-  color: var(--foreground);
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
-.project-image{
-  justify-self: center;
+.animate-fade-up {
+  animation: fadeInUp 0.8s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
 }
 
-.li-text{
-  font-size: small;
+.animate-fade {
+  animation: fadeIn 0.6s ease-out forwards;
 }
 
-.persian-flex{
-  justify-items: end;
-  text-align: end;
+.ink-border {
+  position: relative;
+}
+
+.ink-border::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 48px;
+  height: 2px;
+  background: var(--cedar);
+  opacity: 0.4;
+}
+
+.ink-border-center::after {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+::selection {
+  background: var(--sage);
+  color: var(--paper);
+}
+
+.skill-card {
+  background: rgba(44, 40, 37, 0.04);
+  border: 1px solid rgba(107, 78, 61, 0.1);
+  transition: all 0.3s ease;
+}
+
+.skill-card:hover {
+  background: var(--charcoal);
+  color: var(--paper);
+  border-color: transparent;
+}
+
+.project-card {
+  background: var(--paper);
+  transition: all 0.4s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px var(--shadow-soft);
+}
+
+.btn-primary {
+  background: var(--charcoal);
+  color: var(--paper);
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: var(--cedar);
+  color: var(--paper);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--charcoal);
+  border: 1px solid var(--charcoal);
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--charcoal);
+  color: var(--paper);
+  border-color: var(--charcoal);
 }

@@ -1,100 +1,98 @@
+// components/Header.jsx
 "use client";
-import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const langs = {
-    "en":{
-        "lang":"en",
-        "Title":"My portfolio",
-        "Home":"Home",
-        "About":"About",
-        "Projects":"Projects",
-        "Contact":"Contact",
-        "MyName":"Amir",
-        "MyAKA":"(AKA comm4nd3r)",
-        "MyStack":"Full-Stack Developer",
-        "ViewMyWork":"View My Work",
-        "AboutMe":"About Me",
-        "Summary":"Summary",
-        "Description":"I started my journey in the tech world with Game Development and explored several fields such as Cisco networking, Cybersecurity, Software Development, and 3D Modeling. Eventually, I found my passion in Full Stack Development and have since been focusing on building complete web applications, improving both frontend and backend skills, and mastering modern development tools.",
-        "Skills":"Skills",
-        "Education":"Education",
-        "EducationL1":"B.Sc. in Computer Science (Ongoing)",
-        "EducationL2":"Iran University of Science and Technology",
-        "Projects":"Projects",
-        "ContactMe":"Contact me",
-        "Instagram":"Instagram",
-        "Telegram":"Telegram",
-        "Gmail":"Gmail",
-        "GitHub":"GitHub",
-        "Phone":"Phone",
-        "SourceCode":"Source Code",
-        "LiveDemo":"Live Demo"
-    },
-    "fa":{
-        "lang":"fa",
-        "Title":"رزومه من",
-        "Home":"خانه",
-        "About":"درباره من",
-        "Projects":"نمونه کار",
-        "Contact":"ارتباط با من",
-        "MyName":"امیر",
-        "MyAKA":"(هم میگن commander بهم)",
-        "MyStack":"Full-Stack برنامه نویس",
-        "ViewMyWork":"کار هامو ببین",
-        "AboutMe":"درباره من",
-        "Summary":"خلاصه که",
-        "Description":"من تو دنیای تکنولوژی مسیرمو با ساختن گیم شروع کردم و تو شاخه های مختلفی سرک کشیدم مثل مهندسی شبکه، توسعه نرم افزار و طراحی سه بعدی. مدتیه که مسیرمو تو دنیای وب پیدا کردم و تمرکزمو روی ساختن وب اپلیکشن کامل که هم کلاینت ساید جذابی داشته باشه هم اپلیکیشن امن و بهینه برای سرور داشته باشه گذاشتم.",
-        "Skills":"مهارت ها",
-        "Education":"تحصیلات",
-        "EducationL1":"کارشناسی علوم کامپیوتر (درحال تحصیل)",
-        "EducationL2":"دانشگاه علم و صنعت ایران",
-        "Projects":"پروژه ها",
-        "ContactMe":"تماس با من",
-        "Instagram":"Instagram",
-        "Telegram":"Telegram",
-        "Gmail":"Gmail",
-        "GitHub":"GitHub",
-        "Phone":"Phone",
-        "SourceCode":"Source Code",
-        "LiveDemo":"Live Demo"
-    },
-}
+const Header = ({ currentLang, toggleLang }) => {
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-const Header = ({currentLang, setCurrentLang}) => {
-    const [lang, setLang] = useState("en");
-    useEffect(()=>{
-        setCurrentLang(langs[lang])
-        console.log(currentLang)
-        document.getElementsByTagName("body")[0].style.fontFamily = (lang=="en")?"var(--font-family)":"var(--persian-font-family)";
-    },[lang])
-    useEffect(()=>{
-        setLang("en");
-    },[])
-  return currentLang!=null?(
-    <header className="bg-white/80 backdrop-blur sticky top-0 z-50 shadow-sm text-gray-700">
-      <nav className="container mx-auto p-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">{currentLang["Title"]}</h1>
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-        <ul className="flex space-x-6 ">
-          <li><Link href="#hero" className="li-text hover:text-black">{currentLang["Home"]}</Link></li>
-          <li><Link href="#about" className="li-text hover:text-black">{currentLang["About"]}</Link></li>
-          <li><Link href="#projects" className="li-text hover:text-black">{currentLang["Projects"]}</Link></li>
-          <li><Link href="#contact" className="li-text hover:text-black">{currentLang["Contact"]}</Link></li>
-          <li className="li-text hover:text-black"
-          onClick={()=>{
-            setLang(lang=="en"?"fa":"en")
-          }}>
-            {lang=="en"?<>
-            فا
-            </>:<>
-            en
-            </>}
-          </li>
-        </ul>
+  const navLinks = [
+    { href: "#hero", label: currentLang?.lang === "en" ? "Home" : "خانه" },
+    { href: "#about", label: currentLang?.lang === "en" ? "About" : "درباره" },
+    { href: "#projects", label: currentLang?.lang === "en" ? "Projects" : "پروژه‌ها" },
+    { href: "#contact", label: currentLang?.lang === "en" ? "Contact" : "تماس" },
+  ];
+
+  if (!currentLang) return null;
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "bg-[var(--paper)]/90 backdrop-blur-md shadow-[0_1px_0_rgba(107,78,61,0.08)] py-4"
+          : "bg-transparent py-5 md:py-6"
+      }`}
+    >
+      <nav className="max-w-6xl mx-auto px-6 md:px-12 flex justify-between items-center">
+        <a
+          href="#hero"
+          className="text-lg tracking-wide text-[var(--charcoal)] hover:text-[var(--cedar)] transition-colors duration-300 font-serif"
+        >
+          {currentLang.brand}
+        </a>
+
+        <div className="hidden md:flex items-center gap-10">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="text-sm tracking-wide text-[var(--charcoal)]/60 hover:text-[var(--cedar)] transition-colors duration-300 font-light"
+            >
+              {link.label}
+            </a>
+          ))}
+          <button
+            onClick={toggleLang}
+            className="text-sm tracking-wide text-[var(--charcoal)]/40 hover:text-[var(--cedar)] transition-colors duration-300 font-mono"
+          >
+            {currentLang.lang === "en" ? "فا" : "en"}
+          </button>
+        </div>
+
+        <button
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          className="md:hidden w-8 h-8 flex flex-col justify-center items-center gap-1.5"
+          aria-label="Menu"
+        >
+          <span className={`w-6 h-px bg-[var(--charcoal)] transition-all duration-300 ${mobileMenuOpen ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`w-6 h-px bg-[var(--charcoal)] transition-all duration-300 ${mobileMenuOpen ? "opacity-0" : ""}`} />
+          <span className={`w-6 h-px bg-[var(--charcoal)] transition-all duration-300 ${mobileMenuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+        </button>
       </nav>
+
+      <div className={`md:hidden fixed inset-x-0 top-[61px] bg-[var(--paper)]/98 backdrop-blur-lg transition-all duration-400 ease-out overflow-hidden ${mobileMenuOpen ? "max-h-80 border-t border-[var(--stone)]" : "max-h-0"}`}>
+        <div className="flex flex-col items-center py-8 gap-6">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="text-base tracking-wide text-[var(--charcoal)]/60 hover:text-[var(--cedar)] transition-colors duration-300 font-light"
+            >
+              {link.label}
+            </a>
+          ))}
+          <button
+            onClick={() => {
+              toggleLang();
+              setMobileMenuOpen(false);
+            }}
+            className="text-base tracking-wide text-[var(--charcoal)]/40 hover:text-[var(--cedar)] transition-colors duration-300 font-mono"
+          >
+            {currentLang.lang === "en" ? "فا" : "en"}
+          </button>
+        </div>
+      </div>
     </header>
-  ):(<></>);
+  );
 };
 
 export default Header;

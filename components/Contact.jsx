@@ -8,7 +8,7 @@ const Contact = ({ currentLang }) => {
   const isInView = useInView(sectionRef, { threshold: 0.2 });
 
   const contactLinks = [
-    { name: "instagram", url: "https://www.instagram.com/prodbydashti/", label: "Instagram" },
+    { name: "instagram", url: "https://www.instagram.com/dashti4l/", label: "Instagram" },
     { name: "telegram", url: "https://telegram.org/commanderOII/", label: "Telegram" },
     { name: "gmail", url: "mailto:amir1385amol@gmail.com", label: "Gmail" },
     { name: "github", url: "https://github.com/comm4nd3rID/", label: "GitHub" },
